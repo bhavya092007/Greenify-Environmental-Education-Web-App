@@ -315,7 +315,7 @@
 <div id="chatbot-container" class="chatbot-container">
   <div class="chatbot-header">
     <div class="header-content">
-      <h3>🌍 Eco-Chat AI</h3>
+      <h3>🌍Eco-Chat AI</h3>
       <p class="header-subtitle">Environmental Expert</p>
     </div>
     <button id="close-chatbot" class="close-btn" aria-label="Close chatbot">✕</button>
@@ -324,7 +324,7 @@
   <div id="messages-container" class="messages-container">
     <div class="message bot-message">
       <div class="message-bubble">
-        <p>Hi! I'm your AI environmental assistant. Ask me anything about climate, recycling, renewable energy, or sustainability! 🌱</p>
+        <p>Hi! I'm your AI environmental assistant Made by Greenify. Ask me anything about climate, recycling, renewable energy, or sustainability! 🌱</p>
       </div>
     </div>
   </div>
@@ -399,6 +399,8 @@
     display: none;
     overflow: hidden;
     animation: slideUp 0.3s ease;
+    top: auto;
+    max-height: calc(100vh - 120px);
   }
 
   .chatbot-container.active {
@@ -420,24 +422,31 @@
   .chatbot-header {
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     color: white;
-    padding: 20px;
+    padding: 16px 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-shrink: 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    gap: 12px;
+  }
+
+  .header-content {
+    flex: 1;
   }
 
   .header-content h3 {
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
+    line-height: 1.2;
   }
 
   .header-subtitle {
-    margin: 5px 0 0 0;
-    font-size: 12px;
+    margin: 4px 0 0 0;
+    font-size: 11px;
     opacity: 0.9;
+    line-height: 1.2;
   }
 
   /* CLOSE BUTTON */
@@ -748,7 +757,7 @@
 </style>
 
 <script>
-  const BACKEND_URL = '/api';
+  const BACKEND_URL = '/.netlify/functions';
   const DOM = {
     toggle: document.getElementById("chatbot-toggle"),
     container: document.getElementById("chatbot-container"),
