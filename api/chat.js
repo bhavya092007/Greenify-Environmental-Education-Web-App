@@ -9,6 +9,17 @@ export default async function handler(req, res) {
     const { message, conversationHistory } = req.body;
     const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
+    // Debug log
+    console.log('GROQ_API_KEY:', GROQ_API_KEY ? 'Set' : 'NOT SET');
+    console.log('Message:', message);
+
+    if (!GROQ_API_KEY) {
+      return res.status(500).json({
+        success: false,
+        error: 'GROQ_API_KEY environment variable not set'
+      });
+    }
+
     const response = await axios.post('https://api.groq.com/openai/v1/chat/completions', {
       model: 'llama-3.3-70b-versatile',
       messages: [
@@ -36,9 +47,10 @@ export default async function handler(req, res) {
     });
 
   } catch (error) {
+    console.error('API Error:', error.response?.status, error.response?.data);
     return res.status(500).json({
       success: false,
-      error: error.message
+      error: error.response?.data?.error?.message || error.message
     });
   }
 }
